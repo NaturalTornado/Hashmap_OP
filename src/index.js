@@ -1,7 +1,9 @@
 
 
+
 class Hashmap {
 
+    
 
     constructor (size = 16) {
 
@@ -9,14 +11,29 @@ class Hashmap {
     }
 
 
+       
+
     hash(key) {
-        let hashCode = 0;        
-           
+        let hashCode = 0;     
+        
+        let fullLength = this.map.length;
+        let loadFactor = 0.75;    
+        
         const primeNumber = 31;
         for (let i = 0; i < key.length; i++) {
-          hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.map.length;
+          hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % fullLength;
+
+          let arrLength = test.length();
+
+            console.log('hash test length: ' + arrLength);
+
+          if (arrLength >= (fullLength * loadFactor)) {
+            fullLength *= 1.5;
+
+          }
+
         }
-     
+        console.log('full lengthmeter: ' + fullLength);
         return hashCode;
       }; 
 
@@ -177,9 +194,13 @@ class Hashmap {
     };
 
 
+
+
 }  
 
 
+
+/*
 const myMap = new Hashmap ();
 
 myMap.set('Hello', 'I am the old value. 123');
@@ -207,3 +228,46 @@ myMap.keys();
 myMap.entries();
 
 myMap.values();
+*/
+
+const test = new Hashmap();
+
+test.set('apple', 'red')
+test.set('banana', 'yellow')
+test.set('carrot', 'orange')
+test.set('dog', 'brown')
+test.set('elephant', 'gray')
+test.set('frog', 'green')
+test.set('grape', 'purple')
+test.set('hat', 'black')
+test.set('ice cream', 'white')
+test.set('jacket', 'blue')
+test.set('kite', 'pink')
+test.set('lion', 'golden')
+//12 of these
+
+test.keys();
+
+test.entries();
+
+test.values();
+
+test.length();
+
+
+console.log('array length: ' + test.length());
+
+console.log('full length: ' + test.map.length);
+
+test.set('moon', 'silver');
+//now 13
+
+
+test.set('a', 'b');
+//now 14
+
+
+console.log('array length: ' + test.length());
+
+console.log('full length: ' + test.map.length);
+
